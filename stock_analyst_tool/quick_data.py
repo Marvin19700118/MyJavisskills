@@ -1,0 +1,12 @@
+import yfinance as yf
+t = yf.Ticker("2233.TW")
+hist_3mo = t.history(period='3mo')
+print(f"High 3mo: {hist_3mo['High'].max()}")
+idx = hist_3mo['High'].idxmax()
+print(f"High Date: {idx}")
+print(f"Close Today: {hist_3mo['Close'].iloc[-1]}")
+print(f"Today Vol: {hist_3mo['Volume'].iloc[-1]}")
+print(f"Avg Vol 5D: {hist_3mo['Volume'].iloc[-5:-1].mean()}")
+twii = yf.Ticker("^TWII").history(period='2mo')
+print(f"TWII Close: {twii['Close'].iloc[-1]}")
+print(f"TWII 20MA: {twii['Close'].rolling(20).mean().iloc[-1]}")
